@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKTChat.Core", "src\VKTChat.Core\VKTChat.Core.csproj", "{33B092EC-4AF4-4AE0-9834-E1DEC8580017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKTChat.Droid", "src\VKTChat.Droid\VKTChat.Droid.csproj", "{E01F80CD-BD51-4FCD-85A3-84D23FC04206}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33B092EC-4AF4-4AE0-9834-E1DEC8580017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B092EC-4AF4-4AE0-9834-E1DEC8580017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B092EC-4AF4-4AE0-9834-E1DEC8580017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B092EC-4AF4-4AE0-9834-E1DEC8580017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E01F80CD-BD51-4FCD-85A3-84D23FC04206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E01F80CD-BD51-4FCD-85A3-84D23FC04206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E01F80CD-BD51-4FCD-85A3-84D23FC04206}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E01F80CD-BD51-4FCD-85A3-84D23FC04206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E01F80CD-BD51-4FCD-85A3-84D23FC04206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E01F80CD-BD51-4FCD-85A3-84D23FC04206}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {524B514C-DF3F-4124-94F3-FEEE626B1337}
+	EndGlobalSection
+EndGlobal
