@@ -4,9 +4,9 @@ namespace VKTChat.Core.Services
 {
     public interface IChatService
     {
-        void SendMessage(Message message);
-        void DeleteMessage(Message message);
-        void EditMessage(Message message);
-        void GoBack();
+        bool CreateChat(Chat newData);
+        bool EditChat(int idChat, Chat newData);
+        bool DeleteChat(int idChat);
+        Chat GetChat(int idChat);
     }
 }

@@ -4,8 +4,10 @@ namespace VKTChat.Core.Services
 {
     public interface IUserService
     {
-        void CreateUser(User newUser);
-        void EditUser(User selectedUser);
-        void DeleteUser(User selectedUser);
+        void RegistrateUser(User newData);
+        bool LoginUser(string username, string password);
+        void EditUser(int idUser, User newData);
+        void DeleteUser(int idUser);
+        User GetUser(int idUser);
     }
 }
