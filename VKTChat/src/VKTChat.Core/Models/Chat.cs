@@ -1,21 +1,19 @@
 using System;
-using MvvmCross.ViewModels;
+using System.Collections.Generic;
 
 namespace VKTChat.Core.Models
 {
     public class Chat
     {
-        public int ID { get; set; }
+        public int IdChat { get; set; }
         public string Name { get; set; }
-        public MvxObservableCollection<Message> Messages { get; set; }
-        public User Owner { get; set; }
         public DateTime CreationDateTime { get; set; }
-        public Chat(int id, string name, User owner)
+        public List<Message> Messages { get; set; }
+        public Chat(int idChatid, string name)
         {
-            ID = id;
+            IdChat = idChatid;
             Name = name;
-            Messages = new MvxObservableCollection<Message>();
-            Owner = owner;
+            Messages = new List<Message>();
             CreationDateTime = DateTime.Now;
         }
     }
