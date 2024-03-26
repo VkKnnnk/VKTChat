@@ -4,9 +4,10 @@ namespace VKTChat.Core.Services
 {
     public interface IMessageService
     {
-        void SendMessage(Message newMessage);
-        bool EditMessage(int idMessage, Message newMessage);
-        bool DeleteMessage(int idMessage);
         List<Message> GetMessages();
+        Task SendMessageAsync(Message newMessage);
+        Task EditMessageAssync(int idMessage, Message newMessage);
+        Task DeleteMessageAsync(int idMessage);
+        Message? GetMessageById(int idMessage);
     }
 }

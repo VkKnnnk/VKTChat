@@ -19,13 +19,15 @@ namespace VKTChat.Core.Services
             var currentUser = _userContext.GetCurrentData();
             if (currentUser is not User || currentUser is null)
                 throw new ArgumentException("СurrentUser must be a valid instance of User", nameof(currentUser));
-            _currentUser = currentUser as User;
+            _currentUser = (User)currentUser;
             _chats = _currentUser.Chats;
         }
         #region Methods
         public List<Chat> GetChats() => _chats;
         public async Task AddChatAsync(Chat newChat)
         {
+            ArgumentNullException.ThrowIfNull(newChat);
+
             var nextId = _chats.Any() ? _chats.Max(u => u.IdChat) + 1 : 1;
             newChat.IdChat = nextId;
             _chats.Add(newChat);
@@ -33,9 +35,10 @@ namespace VKTChat.Core.Services
         }
         public async Task EditChatAsync(int idChat, Chat newChat)
         {
-            Chat? chatToEdit = _chats.FirstOrDefault(x => x.IdChat == idChat);
-            if (chatToEdit is null)
-                throw new InvalidOperationException($"Chat with ID {idChat} not found");
+            ArgumentNullException.ThrowIfNull(newChat);
+            Chat? chatToEdit = _chats.FirstOrDefault(x => x.IdChat == idChat)
+                ?? throw new InvalidOperationException($"Chat with ID {idChat} not found");
+
             chatToEdit.Name = newChat.Name;
             await _appdataService.SaveDataAsync();
         }
@@ -53,9 +56,7 @@ namespace VKTChat.Core.Services
         public Chat? GetChatById(int idChat)
         {
             Chat? chat = _chats.FirstOrDefault(x => x.IdChat == idChat);
-            if (chat is null)
-                throw new InvalidOperationException($"User with ID {idChat} not found");
-            return chat;
+            return chat is null ? throw new InvalidOperationException($"Chat with ID {idChat} not found") : chat;
         }
         #endregion
     }

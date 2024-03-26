@@ -23,6 +23,8 @@ namespace VKTChat.Core.Services
         public List<User> GetUsers() => _users;
         public async Task AddUserAsync(User newUser)
         {
+            ArgumentNullException.ThrowIfNull(newUser);
+
             if (!_users.Any(x => x.UserName == newUser.UserName))
             {
                 var nextId = _users.Any() ? _users.Max(u => u.IdUser) + 1 : 1;
@@ -33,11 +35,14 @@ namespace VKTChat.Core.Services
         }
         public async Task EditUserAsync(int idUser, User newData)
         {
-            User? userToEdit = _users.FirstOrDefault(x => x.IdUser == idUser);
-            if (userToEdit is null)
-                throw new InvalidOperationException($"User with ID {idUser} not found");
+            ArgumentNullException.ThrowIfNull(newData);
+            User? userToEdit = _users.FirstOrDefault(x => x.IdUser == idUser)
+                ?? throw new InvalidOperationException($"User with ID {idUser} not found");
 
-            userToEdit.UserName = newData.UserName;
+            if (!_users.Any(x => x.UserName == newData.UserName))
+            {
+                userToEdit.UserName = newData.UserName;
+            }
             userToEdit.DisplayName = newData.DisplayName;
             userToEdit.AboutMe = newData.AboutMe;
             userToEdit.UserPhoto = newData.UserPhoto;
@@ -57,9 +62,7 @@ namespace VKTChat.Core.Services
         public User? GetUserById(int idUser)
         {
             User? user = _users.FirstOrDefault(x => x.IdUser == idUser);
-            if (user is null)
-                throw new InvalidOperationException($"User with ID {idUser} not found");
-            return user;
+            return user is null ? throw new InvalidOperationException($"User with ID {idUser} not found") : user;
         }
         #endregion
     }
