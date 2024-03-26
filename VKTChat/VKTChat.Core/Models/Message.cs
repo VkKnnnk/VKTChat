@@ -9,23 +9,22 @@ namespace VKTChat.Core.Models
         public DateTime SentDateTime { get; set; }
         public bool IsChanged { get; set; }
         public Image? Image { get; set; }
-        private Message(int idMessage, User? fromUser, Bot? fromBot, string text)
+        private Message(User? fromUser, Bot? fromBot, string text)
         {
-            IdMessage = idMessage;
             User = fromUser;
             Bot = fromBot;
             Text = text;
             IsChanged = false;
             SentDateTime = DateTime.Now;
         }
-        public static Message FromUser(int idMessage, User fromUser, string text)
+        public static Message FromUser(User fromUser, string text)
         {
-            return new Message(idMessage, fromUser, null, text);
+            return new Message(fromUser, null, text);
         }
 
-        public static Message FromBot(int idMessage, Bot fromBot, string text)
+        public static Message FromBot(Bot fromBot, string text)
         {
-            return new Message(idMessage, null, fromBot, text);
+            return new Message(null, fromBot, text);
         }
     }
 }

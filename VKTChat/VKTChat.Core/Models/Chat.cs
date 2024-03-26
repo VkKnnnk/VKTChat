@@ -6,9 +6,8 @@ namespace VKTChat.Core.Models
         public string Name { get; set; }
         public DateTime CreationDateTime { get; set; }
         public List<Message> Messages { get; set; }
-        public Chat(int idChatid, string name)
+        public Chat(string name)
         {
-            IdChat = idChatid;
             Name = name;
             Messages = new List<Message>();
             CreationDateTime = DateTime.Now;

@@ -37,7 +37,7 @@ namespace VKTChat.Core.Services
             await _appdataService.SaveDataAsync();
         }
 
-        public async Task EditMessageAssync(int idMessage, Message newMessage)
+        public async Task EditMessageAsync(int idMessage, Message newMessage)
         {
             ArgumentNullException.ThrowIfNull(newMessage);
             Message? messageToEdit = _messages.

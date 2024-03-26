@@ -4,9 +4,6 @@ namespace VKTChat.Core.Services
 {
     public interface IBotService
     {
-        void EnqueueMessage(Message message);
-        void ProcessMessages();
-        Message ProcessMessage(Message message);
-        void SendMessageToUser(Message response);
+        Task<Message> RespondToMessageAsync(Bot bot, Message message);
     }
 }

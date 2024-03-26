@@ -6,7 +6,7 @@ namespace VKTChat.Core.Services
     {
         List<Message> GetMessages();
         Task SendMessageAsync(Message newMessage);
-        Task EditMessageAssync(int idMessage, Message newMessage);
+        Task EditMessageAsync(int idMessage, Message newMessage);
         Task DeleteMessageAsync(int idMessage);
         Message? GetMessageById(int idMessage);
     }
