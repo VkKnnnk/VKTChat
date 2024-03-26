@@ -1,33 +1,56 @@
-using System;
 using VKTChat.Core.Models;
 
 namespace VKTChat.Core.Services
 {
     public class UserService : IUserService
     {
-        public bool DeleteUser(int idUser)
+        private List<User> _users = new List<User>();
+        private readonly IAppdataService _appdataService;
+        public UserService(IAppdataService appdataService)
         {
-            throw new NotImplementedException();
+            _appdataService = appdataService;
+            _ = LoadUsersAsync();
         }
-
-        public bool EditUser(int idUser, User newData)
+        private async Task LoadUsersAsync()
         {
-            throw new NotImplementedException();
+            _users = await _appdataService.GetDataAsync();
         }
-
-        public List<User> GetUsers()
+        public User? GetUserByID(int idUser)
         {
-            throw new NotImplementedException();
+            User? user = _users.FirstOrDefault(u => u.IdUser == idUser);
+            if (user is null)
+                throw new InvalidOperationException($"User with ID {idUser} not found");
+            return user;
         }
-
-        public User? LoginUser(string username, string password)
+        public async Task AddUserAsync(User newUser)
         {
-            throw new NotImplementedException();
+            var nextId = _users.Any() ? _users.Max(u => u.IdUser) + 1 : 1;
+            newUser.IdUser = nextId;
+            _users.Add(newUser);
+            await _appdataService.SaveDataAsync();
         }
-
-        public User RegistrateUser(User newData)
+        public async Task DeleteUserAsync(int idUser)
         {
-            throw new NotImplementedException();
+            if (_users.Any(u => u.IdUser == idUser))
+            {
+                _users.RemoveAll(u => u.IdUser == idUser);
+                await _appdataService.SaveDataAsync();
+            }
+            else
+                throw new InvalidOperationException($"User with ID {idUser} not found");
+        }
+        public async Task EditUserAsync(int idUser, User newData)
+        {
+            User? userToEdit = _users.FirstOrDefault(x => x.IdUser == idUser);
+            if (userToEdit == null)
+                throw new InvalidOperationException($"User with ID {idUser} not found");
+
+            userToEdit.UserName = newData.UserName;
+            userToEdit.DisplayName = newData.DisplayName;
+            userToEdit.AboutMe = newData.AboutMe;
+            userToEdit.UserPhoto = newData.UserPhoto;
+
+            await _appdataService.SaveDataAsync();
         }
     }
 }
