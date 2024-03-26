@@ -4,9 +4,10 @@ namespace VKTChat.Core.Services
 {
     public interface IUserService
     {
-        User? GetUserByID(int idUser);
+        List<User> GetUsers();
         Task AddUserAsync(User newUser);
         Task EditUserAsync(int idUser, User newData);
         Task DeleteUserAsync(int idUser);
+        User? GetUserById(int idUser);
     }
 }
