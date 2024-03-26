@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-
 namespace VKTChat.Core.Models
 {
     public class User
     {
         public int IdUser { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
         public string DisplayName { get; set; }
         public Image DefaultUserPhoto { get; set; }
         public List<Chat> Chats { get; set; }
@@ -14,11 +11,9 @@ namespace VKTChat.Core.Models
         public Image? UserPhoto { get; set; }
         public string? AboutMe { get; set; }
 #nullable disable
-        public User(int idUser, string username, string password, string displayname)
+        public User(string username, string displayname)
         {
-            IdUser = idUser;
             UserName = username;
-            Password = password;
             DisplayName = displayname;
             AboutMe = null;
             UserPhoto = null;
