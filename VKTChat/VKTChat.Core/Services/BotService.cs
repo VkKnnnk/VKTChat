@@ -1,4 +1,3 @@
-using System;
 using VKTChat.Core.Models;
 
 namespace VKTChat.Core.Services

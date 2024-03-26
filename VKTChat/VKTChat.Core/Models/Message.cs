@@ -1,5 +1,3 @@
-using System;
-
 namespace VKTChat.Core.Models
 {
     public class Message

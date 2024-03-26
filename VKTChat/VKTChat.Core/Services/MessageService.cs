@@ -1,11 +1,14 @@
-using System;
-using System.Collections.Generic;
 using VKTChat.Core.Models;
 
 namespace VKTChat.Core.Services
 {
     public class MessageService : IMessageService
     {
+        private readonly IAppdataService _appdataService;
+        public MessageService(IAppdataService appdataService)
+        {
+            _appdataService = appdataService;
+        }
         public bool DeleteMessage(int idMessage)
         {
             throw new NotImplementedException();

@@ -1,10 +1,15 @@
-using System;
 using VKTChat.Core.Models;
 
 namespace VKTChat.Core.Services
 {
     public class ChatService : IChatService
     {
+        private List<Chat> _chats;
+        private readonly IAppdataService _appdataService;
+        public ChatService(IAppdataService appdataService)
+        {
+            _appdataService = appdataService;
+        }
         public Chat? CreateChat(Chat newChat)
         {
             throw new NotImplementedException();
@@ -27,7 +32,7 @@ namespace VKTChat.Core.Services
 
         public List<Chat> GetChats()
         {
-            throw new NotImplementedException();
+            return _chats;
         }
     }
 }

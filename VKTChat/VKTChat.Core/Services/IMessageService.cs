@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using VKTChat.Core.Models;
 
 namespace VKTChat.Core.Services
